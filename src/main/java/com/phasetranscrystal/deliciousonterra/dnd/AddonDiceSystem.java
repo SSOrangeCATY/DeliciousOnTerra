@@ -3,6 +3,7 @@ package com.phasetranscrystal.deliciousonterra.dnd;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AddonDiceSystem {
+
     public final String title;
     private final Dice dice;
     private final AddonValue addonValue;
@@ -11,30 +12,30 @@ public class AddonDiceSystem {
     private int rollTime = 1;
     public boolean isStart = false;
 
-
-    public AddonDiceSystem(String title, AddonValue addonValue, int targetValue){
+    public AddonDiceSystem(String title, AddonValue addonValue, int targetValue) {
         this.title = title;
         this.dice = new Dice(20);
         this.addonValue = addonValue;
         this.TARGET_VALUE = targetValue;
     }
-    public AddonDiceSystem(String title, int targetValue){
+
+    public AddonDiceSystem(String title, int targetValue) {
         this.title = title;
         this.dice = new Dice(20);
         this.addonValue = new AddonValue();
         this.TARGET_VALUE = targetValue;
     }
 
-    private void roll(){
+    private void roll() {
         AtomicInteger rolled = new AtomicInteger(dice.roll());
-        if (rolled.get() > 3  || rolled.get() < 20){
+        if (rolled.get() > 3 || rolled.get() < 20) {
             this.addonValue.getAddonValue().forEach((s, check) -> {
-                if(DNDConfig.debug){
+                if (DNDConfig.debug) {
                     int roll = rolled.get();
                     rolled.addAndGet(check);
-                    System.out.println("name: "+ s + " addon " + check);
+                    System.out.println("name: " + s + " addon " + check);
                     System.out.println(roll + " -> " + rolled.get());
-                }else{
+                } else {
                     rolled.addAndGet(check);
                 }
             });
@@ -43,12 +44,12 @@ public class AddonDiceSystem {
         this.rollTime -= 1;
     }
 
-    public void addRollTime(int time){
+    public void addRollTime(int time) {
         this.rollTime += time;
     }
 
-    public boolean startRoll(){
-        if(rollTime > 0){
+    public boolean startRoll() {
+        if (rollTime > 0) {
             isStart = true;
             this.roll();
             return this.testResult();
@@ -73,20 +74,19 @@ public class AddonDiceSystem {
         return addonValue;
     }
 
-    public boolean testResult(){
-        if(rolled >= TARGET_VALUE){
-            System.out.println("success: "+ rolled + " >= " + this.TARGET_VALUE);
+    public boolean testResult() {
+        if (rolled >= TARGET_VALUE) {
+            System.out.println("success: " + rolled + " >= " + this.TARGET_VALUE);
             return true;
-        }else if(rolled == 1){
-            System.out.println("big fail: "+ rolled + " < " + this.TARGET_VALUE);
+        } else if (rolled == 1) {
+            System.out.println("big fail: " + rolled + " < " + this.TARGET_VALUE);
             return false;
-        }else if(rolled == 20){
-            System.out.println("big success: MAX"+ " >= " + this.TARGET_VALUE);
+        } else if (rolled == 20) {
+            System.out.println("big success: MAX" + " >= " + this.TARGET_VALUE);
             return true;
-        }else{
-            System.out.println("fail: "+ rolled + " < " + this.TARGET_VALUE);
+        } else {
+            System.out.println("fail: " + rolled + " < " + this.TARGET_VALUE);
             return false;
         }
     }
-
 }
