@@ -1,0 +1,26 @@
+repositories {
+    mavenLocal()
+    maven {
+        url = "https://cursemaven.com" // CurseForge模组仓库
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
+        url 'https://www.jitpack.io' // GitHub模组仓库
+        content {
+            includeGroup "com.github.TechnoChronicle"
+        }
+    }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+    maven {
+        name 'IzzelAliz Maven'
+        url 'https://maven.izzel.io/releases/'
+    }
+}

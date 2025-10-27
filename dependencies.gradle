@@ -1,0 +1,13 @@
+dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+    implementation "net.neoforged:neoforge:${neo_version}"
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib_version}"
+    implementation "curse.maven:modern-ui-${modernui_path}"
+
+    // Modern UI core framework
+    implementation "icyllis.modernui:ModernUI-Core:${modernui_version}"
+    // Modern UI core extensions
+    implementation "icyllis.modernui:ModernUI-Markdown:${modernui_version}"
+}

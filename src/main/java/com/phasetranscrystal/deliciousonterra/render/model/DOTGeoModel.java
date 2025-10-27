@@ -1,14 +1,17 @@
 package com.phasetranscrystal.deliciousonterra.render.model;
 
-import com.phasetranscrystal.deliciousonterra.DeliciousOnTerra;
 import net.minecraft.resources.ResourceLocation;
+
+import com.phasetranscrystal.deliciousonterra.DeliciousOnTerra;
 import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.model.GeoModel;
 
 public class DOTGeoModel<T extends GeoAnimatable> extends GeoModel<T> {
+
     public ResourceLocation modelLocation;
     public ResourceLocation textLoc;
     public ResourceLocation animationLoc;
+
     public DOTGeoModel(ResourceLocation modelLocation, ResourceLocation textLoc, ResourceLocation animationLoc) {
         this.modelLocation = modelLocation;
         this.textLoc = textLoc;
@@ -19,12 +22,11 @@ public class DOTGeoModel<T extends GeoAnimatable> extends GeoModel<T> {
         this(DeliciousOnTerra.byPath(modelLoc), DeliciousOnTerra.byPath(textLoc), DeliciousOnTerra.byPath(animationLoc));
     }
 
-    public DOTGeoModel(String name,String type) {
+    public DOTGeoModel(String name, String type) {
         this(
-                DeliciousOnTerra.byPath("geo/"+type+"/"+name+".geo.json"),
-                DeliciousOnTerra.byPath("textures/"+type+"/"+name+".png"),
-                DeliciousOnTerra.byPath("animations/"+name+"_animation.json")
-        );
+                DeliciousOnTerra.byPath("geo/" + type + "/" + name + ".geo.json"),
+                DeliciousOnTerra.byPath("textures/" + type + "/" + name + ".png"),
+                DeliciousOnTerra.byPath("animations/" + name + "_animation.json"));
     }
 
     @Override
